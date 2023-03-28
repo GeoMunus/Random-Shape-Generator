@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Random Shape</title>
+	<style>
+		canvas {
+			border: 1px solid black;
+		}
+	</style>
+</head>
+<body>
+	<h1>Here you can generate random shapes! Try it out here!</h1>
+	<canvas id="myCanvas" width="400" height="400"></canvas>
+	<button id="generateButton">Generate Shape</button>
+	<script>
+		const canvas = document.getElementById("myCanvas");
+		const ctx = canvas.getContext("2d");
+		const generateButton = document.getElementById("generateButton");
+		
+		// set up button click handler
+		generateButton.addEventListener("click", generateShape);
+		
+		// generate a random shape
+		function generateShape() {
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			ctx.beginPath();
+			ctx.moveTo(randomInt(50, 350), randomInt(50, 350));
+			ctx.lineTo(randomInt(50, 350), randomInt(50, 350));
+			ctx.lineTo(randomInt(50, 350), randomInt(50, 350));
+      ctx.lineTo(randomInt(50, 350), randomInt(50, 350));
+			ctx.lineTo(randomInt(50, 350), randomInt(50, 350));
+      ctx.lineTo(randomInt(50, 350), randomInt(50, 350));
+			ctx.lineTo(randomInt(50, 350), randomInt(50, 350));
+			ctx.closePath();
+			ctx.fillStyle = getRandomColor();
+			ctx.fill();
+			ctx.strokeStyle = getRandomColor();
+			ctx.lineWidth = randomInt(1, 10);
+			ctx.stroke();
+		}
+		
+		// function to generate a random integer between min and max (inclusive)
+		function randomInt(min, max) {
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+		
+		// function to generate a random color
+		function getRandomColor() {
+			const letters = "0123456789ABCDEF";
+			let color = "#";
+			for (let i = 0; i < 6; i++) {
+				color += letters[Math.floor(Math.random() * 16)];
+			}
+			return color;
+		}
+	</script>
+</body>
+</html>
